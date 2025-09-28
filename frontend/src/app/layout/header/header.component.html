@@ -1,0 +1,20 @@
+<mat-toolbar color="primary" class="app-header">
+    <a routerLink="/dashboard" class="app-title-link">
+        <span>Tool Manager PRO</span>
+    </a>
+
+    <mat-nav-list class="header-nav-list">
+        <mat-list-item *ngIf="!isLoggedIn">
+            <a mat-button routerLink="/sign-in" routerLinkActive="active-link" aria-label="Sign in to your account">
+                Sign In
+            </a>
+        </mat-list-item>
+
+        <mat-list-item>
+            <button mat-button (click)="onLClickLogout()" aria-label="Log out from your account">
+                Logout
+            </button>
+        </mat-list-item>
+    </mat-nav-list>
+
+</mat-toolbar>

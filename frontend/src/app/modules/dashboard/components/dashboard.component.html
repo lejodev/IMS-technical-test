@@ -1,0 +1,70 @@
+<div class="dashboard-container">
+    <header class="header">
+        <h1>Dashboard de Préstamos</h1>
+        <p class="user-greeting">Bienvenido, {{rol}} **{{ currentUser?.nombre }}**.</p>
+    </header>
+
+    <div class="dashboard-content">
+
+        <section class="history-section">
+            <h2>Historial de Préstamos</h2>
+
+            <mat-card *ngIf="prestamos.length === 0" class="empty-state">
+                <mat-card-title>{{ defaultMessage }}</mat-card-title>
+                <mat-card-content>
+                    <p>Usa el botón "Crear Nuvo Prestamo" para registrar tu primera solicitud.</p>
+                </mat-card-content>
+            </mat-card>
+
+            <div *ngIf="prestamos.length > 0">
+                <div class="lista-prestamos">
+                    <ul class="prestamo-list">
+                        <li *ngFor="let prestamo of prestamos" class="prestamo-item">
+                            <mat-card class="loan-card">
+                                <mat-card-content>
+                                    <div class="loan-details">
+                                        <span class="loan-id">#{{ prestamo.id }}</span>
+                                        <span class="loan-status" [class.status-pending]="!prestamo.devuelto"
+                                            [class.status-returned]="prestamo.devuelto">
+                                            {{ prestamo.devuelto ? 'DEVUELTO' : 'PENDIENTE' }}
+                                        </span>
+                                    </div>
+                                    <p>Fecha :{{ prestamo.fechaPrestamo | date:'medium' }}**</p>
+                                    <p *ngIf="prestamo.fechaEntrega">Fecha de Devolución: **{{ prestamo.fechaEntrega |
+                                        date:'mediumDate' }}**</p>
+                                    <p *ngIf="currentUser?.esAdmin">a nombre de {{prestamo.usuario.nombre}}</p>
+                                </mat-card-content>
+                                <mat-card-actions>
+                                    <button mat-raised-button color="warn"
+                                        *ngIf="!prestamo.devuelto && !currentUser?.esAdmin"
+                                        (click)="devolverPrestamo(prestamo.id)">
+                                        <mat-icon>undo</mat-icon> Devolver
+                                    </button>
+                                    <button mat-raised-button color="warn"
+                                        *ngIf="!prestamo.devuelto && currentUser?.esAdmin"
+                                        (click)="devolverPrestamo(prestamo.id)">
+                                        <mat-icon>undo</mat-icon> Finalizar prestamo
+                                    </button>
+                                </mat-card-actions>
+                            </mat-card>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <mat-card class="action-card" *ngIf="!currentUser?.esAdmin">
+            <mat-card-header>
+                <mat-card-title>¿Necesitas una herramienta?</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <p>GEnera un prstamo a tu nombre.</p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button color="primary" (click)="generarPrestamo()">
+                    <mat-icon>add_circle_outline</mat-icon> Crear Nuevo Préstamo
+                </button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

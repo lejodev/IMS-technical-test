@@ -1,0 +1,23 @@
+<div class="crear-prestamo">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Crear Nuevo Préstamo</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form (ngSubmit)="onSubmit()" [formGroup]="crearPrestamoForm">
+                <mat-form-field appearance="fill" class="full-width">
+                    <mat-label>Fecha</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="fecha" placeholder="08/06/2025" />
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+
+                    <mat-error *ngIf="crearPrestamoForm.get('fecha')?.hasError('required')">
+                        Porfavor, selecciona la fecha de tu prestamo </mat-error>
+                </mat-form-field>
+                <button mat-raised-button color="primary" type="submit" [disabled]="crearPrestamoForm.invalid">
+                    Registrar Préstamo
+                </button>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

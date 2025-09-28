@@ -12,7 +12,7 @@ import { Usuario } from './modules/usuario/entities/usuario.entity';
 import { Prestamo } from './modules/prestamo/entities/prestamo.entity';
 import { AuthModule } from './modules/auth/auth.module';
 import { AuthService } from './modules/auth/services/auth/auth.service';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
@@ -21,18 +21,31 @@ import { ConfigModule } from '@nestjs/config';
     UsuarioModule,
     PrestamoModule,
     AuthModule,
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: '0000',
-      database: 'tool_manager',
-      entities: [Usuario, Prestamo]
-      // synchronize: true,
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService) => {
+        const password = configService.get<string>('DB_PASSWORD');
+        console.log('DB_PASSWORD', password);
+
+        return {
+          url:`postgresql://postgres:SECRESTDBpass123@db.jbmnrejuscvgnrdbtleg.supabase.co:5432/postgres`,
+          type: 'postgres',
+          database: 'tool_manager',
+          entities: [Usuario, Prestamo],
+          // host: 'localhost',
+          // port: 5432,
+          // username: 'postgres',
+          // password: password,
+          // synchronize: true,
+          ssl: {
+            rejectUnauthorized: true
+          }
+        }
+      },
+      inject: [ConfigService],
     }),
     AuthModule,
-    ],
+  ],
   controllers: [AppController],
   providers: [AppService, PrestamoService, WrapperService, UsuarioService, AuthService],
 })

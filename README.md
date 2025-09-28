@@ -23,6 +23,8 @@ Crea un archivo llamado .env dentro de la carpeta del backend (root del backend)
 
 Copiar y pegar la siguiente configuración
 
+# Credencial base de datos en supabase
+```DB_PASSWORD=SECRESTDBpass123```
 
 # JWT_SECRET y EXPIRATION
 ```JWT_SECRET=miclaveSecreta```

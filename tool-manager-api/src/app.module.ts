@@ -38,7 +38,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
           // password: password,
           // synchronize: true,
           ssl: {
-            rejectUnauthorized: true
+            rejectUnauthorized: false
           }
         }
       },

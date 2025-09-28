@@ -28,7 +28,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
         console.log('DB_PASSWORD', password);
 
         return {
-          url:`postgresql://postgres:SECRESTDBpass123@db.jbmnrejuscvgnrdbtleg.supabase.co:5432/postgres`,
+          url:`postgresql://postgres:${password}@db.jbmnrejuscvgnrdbtleg.supabase.co:5432/postgres`,
           type: 'postgres',
           database: 'tool_manager',
           entities: [Usuario, Prestamo],

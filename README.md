@@ -1,5 +1,5 @@
 ### 🚀 IMS: Tool Manager (Backend & Frontend Monorepo)
-Este proyecto es una prueba técnica implementada como un monorepo que contiene una API RESTful con NestJS y un cliente web con Angular/Material. La persistencia de datos se gestiona a través de tu instancia de PostgreSQL alojada en Supabase.
+Este proyecto es una prueba técnica implementada como un monorepo que contiene una API RESTful con NestJS, una base de datos con PostgreSQL desplegada en SupaBase y un cliente web con Angular/Material. La persistencia de datos se gestiona a través de tu instancia de PostgreSQL alojada en Supabase.
 
 ### Tecnologías usadas
 + NestJS 

@@ -18,7 +18,7 @@ npm (incluido con Node.js)
 
 Angular CLI (npm install -g @angular/cli 14.2.0)
 
-1. Crear Archivo .env
+### 1. Crear Archivo .env
 Crea un archivo llamado .env dentro de la carpeta del backend (root del backend): tool-manager-api/.env.
 
 Copiar y pegar la siguiente configuración

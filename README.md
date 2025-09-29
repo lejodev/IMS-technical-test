@@ -1,11 +1,11 @@
 ### 🚀 IMS: Tool Manager (Backend & Frontend Monorepo)
-Este proyecto es una prueba técnica implementada como un monorepo que contiene una API RESTful con NestJS, una base de datos con PostgreSQL desplegada en SupaBase y un cliente web con Angular/Material. La persistencia de datos se gestiona a través de tu instancia de PostgreSQL alojada en Supabase.
+Este proyecto es una prueba técnica implementada como un monorepo que contiene una API RESTful con NestJS, una base de datos con PostgreSQL desplegada en Render y un cliente web con Angular/Material. La persistencia de datos se gestiona a través de tu instancia de PostgreSQL alojada en Supabase.
 
 ### Tecnologías usadas
 + NestJS 
 + PostgreSQL
 + typeORM
-+ Supabase
++ Render
 + Angular v14.2.0
 + Angular Material
 
@@ -23,8 +23,10 @@ Crea un archivo llamado .env dentro de la carpeta del backend (root del backend)
 
 Copiar y pegar la siguiente configuración
 
-# Credencial base de datos en supabase
-```DB_PASSWORD=SECRESTDBpass123```
+## Variable para conexión a base de datos alojada en Render
+```
+DATABASE_URL=postgresql://tool_manager_user:Ah66vWcZuhUTh0JcTyNQcPQIaBVYzf2T@dpg-d3d8oki4d50c73d6bg80-a.oregon-postgres.render.com/tool_manager
+```
 
 # JWT_SECRET y EXPIRATION
 ```JWT_SECRET=miclaveSecreta```

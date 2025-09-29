@@ -37,6 +37,9 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
           // username: 'postgres',
           // password: password,
           // synchronize: true,
+          driver: {
+            family: 4
+          },
           ssl: {
             rejectUnauthorized: false
           }
